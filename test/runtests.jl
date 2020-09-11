@@ -46,3 +46,28 @@ end
         @test iscached(KissCaches.GLOBAL_CACHE, self, args...; kw...)
     end
 end
+
+@testset "interesting behaviour" begin
+    # This behaviour is no necesserily desired.
+    # These tests are there so that we don't forget
+    # about it
+
+    cache = Dict()
+    @cached cache self(1.0)
+    @test iscached(cache, self, UInt(1))
+    @test iscached(cache, self, Int(1))
+    @test iscached(cache, self, Float64(1))
+    @test iscached(cache, self, Bool(1))
+    @test iscached(cache, self, Complex(1))
+    @test !iscached(cache, self, fill(1, (1,1)))
+
+    @cached cache self("hi")
+    @test iscached(cache, self, "hi")
+    @test !iscached(cache, self, :hi)
+
+    @cached cache self(1:1)
+    @test iscached(cache, self, 1:1)
+    @test iscached(cache, self, [1])
+    @test iscached(cache, self, [true])
+    @test iscached(cache, self, [1.0])
+end
