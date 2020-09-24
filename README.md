@@ -42,5 +42,7 @@ hi
 
 There are multiple excellent alternatives for caching function calls. Most are more sophisticted
 and work by altering the function definition. KissCaches on the other hand is really simple and alters the function call. See also:
+* [Anamnesis.jl](https://github.com/ExpandingMan/Anamnesis.jl)
+* [Caching.jl](https://github.com/zgornel/Caching.jl)
 * [Memoize.jl](https://github.com/JuliaCollections/Memoize.jl)
 * [Memoization.jl](https://github.com/marius311/Memoization.jl)
