@@ -48,7 +48,7 @@ end
 end
 
 @testset "interesting behaviour" begin
-    # This behaviour is no necesserily desired.
+    # This behaviour is not necesserily desired.
     # These tests are there so that we don't forget
     # about it
 

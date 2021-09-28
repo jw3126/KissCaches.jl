@@ -2,21 +2,21 @@ module KissCaches
 export cached, @cached, iscached
 
 function cached(storage, f, args...; kw...)
-    k = makekey(storage, f, args...; kw...)
-    get!(storage, k) do
+    key = makekey(storage, f, args...; kw...)
+    get!(storage, key) do
         @debug """
         Adding to cache:
         f = $f
         args = $args
         kw = $kw
-        k = $k
+        key = $key
         cache = $cache
         """
         f(args...; kw...)
     end
 end
 # makekey(storage, f, args...; kw...) = Base.hash((f, args, kw))
-makekey(storage, f, args...; kw...) = (f, args, kw.data)
+makekey(storage, f, args...; kw...) = (f, args, (;kw...))
 
 function iscached(storage, f, args...; kw...)
     k = makekey(storage, f, args...; kw...)
